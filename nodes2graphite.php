@@ -5,16 +5,6 @@ $graphite_host='213.166.225.42';
 $nodesfile='/var/www/data/nodes.json';
 $namespace='ffrgb.nodes';
 
-function makeMac($a_nodeid) {
-  for ($i=0;$i<sizeOf($a_nodeid);$i++) {
-    $outstr.=$a_nodeid[$i];
-    if ($i % 2 == 0) {
-      $outstr.=':';
-    }
-  }
-  return($outstr);
-}
-
 function sendToGraphite($key, $value) {
 	echo "Sending to graphite.... $key => $value\n";
   try {
