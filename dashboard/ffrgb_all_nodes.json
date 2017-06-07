@@ -45,20 +45,70 @@
   "id": null,
   "links": [
     {
-      "icon": "bolt",
+      "icon": "external link",
       "tags": [],
-      "title": "Node auf der Netzkarte",
-      "tooltip": "Node auf der Regensburger Netzübersicht",
+      "title": "FFRGB Map",
+      "tooltip": "Regensburger Netzübersicht",
       "type": "link",
-      "url": "https://regensburg.freifunk.net/netz/karte/node/$nodeid/"
+      "url": "https://regensburg.freifunk.net/netz/karte/$nodeid/"
     },
     {
-      "icon": "info",
+      "icon": "dashboard",
+      "includeVars": false,
       "tags": [],
-      "title": "Node Informationen",
+      "title": "Hotel Forsters",
       "tooltip": "",
       "type": "link",
-      "url": "https://regensburg.freifunk.net/netz/statistik/node/$nodeid/"
+      "url": "/dashboard/db/ffrgb-all-nodes?orgId=1&var-nodeid=All&var-host=*forsters*"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "Weinweg",
+      "type": "link",
+      "url": "/dashboard/db/ffrgb-all-nodes?orgId=1&var-nodeid=All&var-host=weinweg*"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "Eurorast",
+      "type": "link",
+      "url": "/dashboard/db/ffrgb-all-nodes?orgId=1&var-nodeid=All&var-host=ff-eurorast*"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "Hotel Münchnerhof",
+      "type": "link",
+      "url": "/dashboard/db/ffrgb-all-nodes?orgId=1&var-nodeid=All&var-host=*hotel-muenchnerhof**"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "Hotel Petersweg",
+      "type": "link",
+      "url": "/dashboard/db/ffrgb-all-nodes?orgId=1&var-nodeid=All&var-host=*hotel-petersweg*"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "Hotel St. Georg",
+      "type": "link",
+      "url": "/dashboard/db/ffrgb-all-nodes?orgId=1&var-nodeid=All&var-host=*hotel-stgeorg*"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "Guericke Str",
+      "type": "link",
+      "url": "/dashboard/db/ffrgb-all-nodes?orgId=1&var-nodeid=All&var-host=guericke*"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "Zeiss Str",
+      "type": "link",
+      "url": "/dashboard/db/ffrgb-all-nodes?orgId=1&var-nodeid=All&var-host=*Zeis*"
     }
   ],
   "refresh": false,
@@ -102,7 +152,7 @@
               "value": 2
             }
           ],
-          "maxDataPoints": 100,
+          "maxDataPoints": "1",
           "nullPointMode": "connected",
           "nullText": null,
           "postfix": "",
@@ -241,6 +291,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "hideTimeOverride": true,
           "id": 8,
           "interval": null,
           "links": [],
@@ -285,6 +336,7 @@
             }
           ],
           "thresholds": "",
+          "timeFrom": "10m",
           "title": "Clients combined",
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -315,17 +367,18 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": "${DS_FFRGB}",
+          "decimals": 0,
           "editable": true,
           "error": false,
-          "fill": 1,
+          "fill": 3,
           "grid": {},
           "id": 1,
           "legend": {
             "alignAsTable": true,
             "avg": false,
             "current": true,
-            "hideEmpty": false,
-            "hideZero": false,
+            "hideEmpty": true,
+            "hideZero": true,
             "max": true,
             "min": false,
             "rightSide": true,
@@ -334,10 +387,10 @@
             "values": true
           },
           "lines": true,
-          "linewidth": 2,
+          "linewidth": 1,
           "links": [],
           "minSpan": 2,
-          "nullPointMode": "connected",
+          "nullPointMode": "null",
           "percentage": false,
           "pointradius": 5,
           "points": false,
@@ -346,7 +399,7 @@
           "seriesOverrides": [],
           "spaceLength": 10,
           "span": 12,
-          "stack": false,
+          "stack": true,
           "steppedLine": false,
           "targets": [
             {
@@ -362,7 +415,7 @@
           "tooltip": {
             "msResolution": false,
             "shared": true,
-            "sort": 0,
+            "sort": 2,
             "value_type": "cumulative"
           },
           "type": "graph",
@@ -430,12 +483,21 @@
           "lines": true,
           "linewidth": 2,
           "links": [],
-          "nullPointMode": "connected",
+          "nullPointMode": "null",
           "percentage": false,
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
+          "seriesOverrides": [
+            {
+              "alias": "/tx$/",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "/forward$/",
+              "transform": "negative-Y"
+            }
+          ],
           "spaceLength": 10,
           "span": 12,
           "stack": false,
@@ -474,7 +536,7 @@
           "tooltip": {
             "msResolution": false,
             "shared": true,
-            "sort": 0,
+            "sort": 2,
             "value_type": "cumulative"
           },
           "transparent": false,
@@ -496,7 +558,8 @@
               "show": true
             },
             {
-              "format": "short",
+              "format": "bps",
+              "label": "",
               "logBase": 1,
               "max": null,
               "min": null,
@@ -530,6 +593,8 @@
           "legend": {
             "avg": false,
             "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
             "max": true,
             "min": false,
             "show": true,
@@ -539,7 +604,7 @@
           "lines": true,
           "linewidth": 2,
           "links": [],
-          "nullPointMode": "connected",
+          "nullPointMode": "null",
           "percentage": false,
           "pointradius": 5,
           "points": false,
@@ -563,7 +628,7 @@
           "tooltip": {
             "msResolution": false,
             "shared": true,
-            "sort": 0,
+            "sort": 2,
             "value_type": "cumulative"
           },
           "type": "graph",
@@ -606,6 +671,8 @@
           "legend": {
             "avg": false,
             "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
             "max": true,
             "min": false,
             "show": true,
@@ -615,7 +682,7 @@
           "lines": true,
           "linewidth": 2,
           "links": [],
-          "nullPointMode": "connected",
+          "nullPointMode": "null",
           "percentage": false,
           "pointradius": 5,
           "points": false,
@@ -639,7 +706,7 @@
           "tooltip": {
             "msResolution": true,
             "shared": true,
-            "sort": 0,
+            "sort": 2,
             "value_type": "cumulative"
           },
           "type": "graph",
@@ -682,6 +749,8 @@
           "legend": {
             "avg": false,
             "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
             "max": false,
             "min": false,
             "show": true,
@@ -691,7 +760,7 @@
           "lines": true,
           "linewidth": 2,
           "links": [],
-          "nullPointMode": "connected",
+          "nullPointMode": "null",
           "percentage": false,
           "pointradius": 5,
           "points": false,
@@ -715,7 +784,7 @@
           "tooltip": {
             "msResolution": false,
             "shared": true,
-            "sort": 0,
+            "sort": 2,
             "value_type": "cumulative"
           },
           "type": "graph",
@@ -841,5 +910,5 @@
   },
   "timezone": "browser",
   "title": "FFRGB All Nodes",
-  "version": 10
+  "version": 32
 }
