@@ -53,27 +53,36 @@
       "url": "https://regensburg.freifunk.net/netz/karte/$nodeid/"
     },
     {
+      "icon": "external link",
+      "keepTime": false,
+      "tags": [],
+      "title": "FFRGB Grafana",
+      "tooltip": "Official FFRGB Grafana",
+      "type": "link",
+      "url": "https://grafana.regensburg.freifunk.net/"
+    },
+    {
       "icon": "dashboard",
       "includeVars": false,
       "tags": [],
       "title": "Hotel Forsters",
       "tooltip": "",
       "type": "link",
-      "url": "/dashboard/db/ffrgb-all-nodes?orgId=1&var-nodeid=All&var-host=*forsters*"
+      "url": "/dashboard/db/ffrgb-all-nodes?var-nodeid=All&var-host=*forsters*"
     },
     {
       "icon": "dashboard",
       "tags": [],
       "title": "Weinweg",
       "type": "link",
-      "url": "/dashboard/db/ffrgb-all-nodes?orgId=1&var-nodeid=All&var-host=weinweg*"
+      "url": "/dashboard/db/ffrgb-all-nodes?var-nodeid=All&var-host=weinweg*"
     },
     {
       "icon": "dashboard",
       "tags": [],
       "title": "Eurorast",
       "type": "link",
-      "url": "/dashboard/db/ffrgb-all-nodes?orgId=1&var-nodeid=All&var-host=ff-eurorast*"
+      "url": "/dashboard/db/ffrgb-all-nodes?var-nodeid=All&var-host=ff-eurorast*"
     },
     {
       "icon": "dashboard",
@@ -87,31 +96,38 @@
       "tags": [],
       "title": "Hotel Petersweg",
       "type": "link",
-      "url": "/dashboard/db/ffrgb-all-nodes?orgId=1&var-nodeid=All&var-host=*hotel-petersweg*"
+      "url": "/dashboard/db/ffrgb-all-nodes?var-nodeid=All&var-host=*hotel-petersweg*"
     },
     {
       "icon": "dashboard",
       "tags": [],
       "title": "Hotel St. Georg",
       "type": "link",
-      "url": "/dashboard/db/ffrgb-all-nodes?orgId=1&var-nodeid=All&var-host=*hotel-stgeorg*"
+      "url": "/dashboard/db/ffrgb-all-nodes?var-nodeid=All&var-host=*hotel-stgeorg*"
     },
     {
       "icon": "dashboard",
       "tags": [],
       "title": "Guericke Str",
       "type": "link",
-      "url": "/dashboard/db/ffrgb-all-nodes?orgId=1&var-nodeid=All&var-host=guericke*"
+      "url": "/dashboard/db/ffrgb-all-nodes?var-nodeid=All&var-host=guericke*"
     },
     {
       "icon": "dashboard",
       "tags": [],
       "title": "Zeiss Str",
       "type": "link",
-      "url": "/dashboard/db/ffrgb-all-nodes?orgId=1&var-nodeid=All&var-host=*Zeis*"
+      "url": "/dashboard/db/ffrgb-all-nodes?var-nodeid=All&var-host=*Zeis*"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "Eichendorff",
+      "type": "link",
+      "url": "/dashboard/db/ffrgb-all-nodes?var-nodeid=All&var-host=*ichendorff*"
     }
   ],
-  "refresh": false,
+  "refresh": "1m",
   "rows": [
     {
       "collapse": false,
@@ -363,7 +379,8 @@
       "panels": [
         {
           "aliasColors": {},
-          "bars": false,
+          "bars": true,
+          "cacheTimeout": "300",
           "dashLength": 10,
           "dashes": false,
           "datasource": "${DS_FFRGB}",
@@ -386,10 +403,11 @@
             "total": false,
             "values": true
           },
-          "lines": true,
+          "lines": false,
           "linewidth": 1,
           "links": [],
-          "minSpan": 2,
+          "maxDataPoints": "",
+          "minSpan": 12,
           "nullPointMode": "null",
           "percentage": false,
           "pointradius": 5,
@@ -400,12 +418,12 @@
           "spaceLength": 10,
           "span": 12,
           "stack": true,
-          "steppedLine": false,
+          "steppedLine": true,
           "targets": [
             {
               "refId": "A",
               "target": "aliasByNode(ffrgb.nodes.*.$host.statistics.clients, 3)",
-              "textEditor": true
+              "textEditor": false
             }
           ],
           "thresholds": [],
@@ -416,7 +434,7 @@
             "msResolution": false,
             "shared": true,
             "sort": 2,
-            "value_type": "cumulative"
+            "value_type": "individual"
           },
           "type": "graph",
           "xaxis": {
@@ -535,7 +553,7 @@
           "title": "Traffic on $host",
           "tooltip": {
             "msResolution": false,
-            "shared": true,
+            "shared": false,
             "sort": 2,
             "value_type": "cumulative"
           },
@@ -835,7 +853,7 @@
         "allValue": "*",
         "current": {},
         "datasource": "${DS_FFRGB}",
-        "hide": 0,
+        "hide": 2,
         "includeAll": true,
         "label": null,
         "multi": false,
@@ -910,5 +928,5 @@
   },
   "timezone": "browser",
   "title": "FFRGB All Nodes",
-  "version": 32
+  "version": 57
 }
